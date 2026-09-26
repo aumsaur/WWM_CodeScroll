@@ -25,6 +25,26 @@ Two prompts on the way in, both expected:
 
 Codes come from [codes.yar.gg](https://codes.yar.gg/), which is somebody else's site. If it goes down or changes its feed, this stops finding new codes until it is updated.
 
+## Before you use it
+
+*Where Winds Meet* prohibits third-party tools in its user agreement, and the
+wording is categorical: it covers tools as a class, not only tools that gain an
+advantage. Enforcement has included permanent account bans.
+
+Nothing here touches gameplay. This reads the keyboard, writes the clipboard,
+and never sends input to the game — you press Ctrl+V yourself, into a
+redemption box, in a menu. There is no advantage to take and no leaderboard
+within reach of it.
+
+It does install a global keyboard hook and run as administrator, and from
+outside the process that is indistinguishable from a macro tool. Being harmless
+is not a thing a detection system can see.
+
+The risk looks low. It is not zero, and it is your account, so the call should
+be yours rather than anyone else's. If you would rather not take it, the code
+list is public — open [codes.yar.gg](https://codes.yar.gg/) and copy them
+across by hand.
+
 ## Run
 
 Everything is controlled from the HUD. Clicking it never takes focus from the game.

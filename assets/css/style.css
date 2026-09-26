@@ -227,6 +227,22 @@ kbd {
   color: #8d96a2;
 }
 
+.get__warn {
+  max-width: 44ch;
+  margin: 0.85rem 0 0;
+  padding-left: 0.85rem;
+  border-left: 2px solid #b87a3c;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #bda079;
+}
+.get__warn a {
+  color: #d8b483;
+}
+.get__warn a:hover {
+  color: #eccfa6;
+}
+
 /* ---------- the manual ---------- */
 
 .paper {
