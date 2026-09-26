@@ -1,0 +1,50 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- The app icon: a jade ticket with wind strokes, drawn on a 256 x 256 grid.
+         The HUD shows it directly; tools\make-icon.ps1 renders it into app.ico. -->
+    <DrawingImage x:Key="AppIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <!-- Invisible frame so the image always spans the full grid. -->
+                <GeometryDrawing Brush="Transparent" Geometry="M0,0 H256 V256 H0 Z"/>
+                <GeometryDrawing>
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#5BD6AB" Offset="0"/>
+                            <GradientStop Color="#1B8669" Offset="1"/>
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                    <GeometryDrawing.Geometry>
+                        <CombinedGeometry GeometryCombineMode="Exclude">
+                            <CombinedGeometry.Geometry1>
+                                <RectangleGeometry Rect="12,48,232,160" RadiusX="26" RadiusY="26"/>
+                            </CombinedGeometry.Geometry1>
+                            <CombinedGeometry.Geometry2>
+                                <GeometryGroup>
+                                    <EllipseGeometry Center="12,128" RadiusX="22" RadiusY="22"/>
+                                    <EllipseGeometry Center="244,128" RadiusX="22" RadiusY="22"/>
+                                </GeometryGroup>
+                            </CombinedGeometry.Geometry2>
+                        </CombinedGeometry>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <!-- Perforation between the stub and the ticket body. -->
+                <GeometryDrawing Geometry="M84,78 V180">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#99FFFFFF" Thickness="7" DashCap="Round">
+                            <Pen.DashStyle>
+                                <DashStyle Dashes="1.4 1.6"/>
+                            </Pen.DashStyle>
+                        </Pen>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <!-- Wind: three strokes, the outer two curling at the end. -->
+                <GeometryDrawing Geometry="M110,102 H172 C196,102 204,80 188,72 C176,66 164,76 170,88 M110,130 H200 M110,158 H160 C184,158 192,180 176,188 C164,194 152,184 158,172">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="White" Thickness="13" StartLineCap="Round" EndLineCap="Round" LineJoin="Round"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

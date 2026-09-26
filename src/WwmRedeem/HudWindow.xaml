@@ -1,0 +1,162 @@
+<Window x:Class="WwmRedeem.HudWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WWM Redeem"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        ShowActivated="False"
+        Focusable="False"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="Manual">
+    <Window.Resources>
+        <FontFamily x:Key="IconFont">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
+
+        <!-- Keycap-looking buttons. Not focusable: the HUD never takes focus from the game. -->
+        <Style x:Key="HudButton" TargetType="Button">
+            <Setter Property="Foreground" Value="#C8C8D0"/>
+            <Setter Property="Background" Value="#2A2A31"/>
+            <Setter Property="BorderBrush" Value="#4A4A54"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="9,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#383842"/>
+                    <Setter Property="BorderBrush" Value="#62626E"/>
+                    <Setter Property="Foreground" Value="#F2F2F6"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#232328"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="IconButton" TargetType="Button" BasedOn="{StaticResource HudButton}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontFamily" Value="{StaticResource IconFont}"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style x:Key="ExitButton" TargetType="Button" BasedOn="{StaticResource IconButton}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#C42B1C"/>
+                    <Setter Property="BorderBrush" Value="#D8493A"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Glyph" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource IconFont}"/>
+            <Setter Property="Margin" Value="0,1,6,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <!-- The margin leaves room inside the window for the drop shadow. -->
+    <Border x:Name="Card" Margin="20" Background="#1E1E22" CornerRadius="14" Padding="14,11,11,11"
+            BorderBrush="#46464E" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="20" ShadowDepth="4" Opacity="0.4" Color="Black"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="{StaticResource AppIcon}" Width="46" Height="46" Margin="0,0,12,0"
+                   VerticalAlignment="Top"/>
+
+            <StackPanel Grid.Column="1">
+                <Grid>
+                    <TextBlock x:Name="SourceText" Foreground="#8A8A96" FontSize="11" Text="WWM Redeem"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Ellipse x:Name="GameDot" Width="7" Height="7" Fill="#6E6E78"
+                                 VerticalAlignment="Center" Margin="24,0,6,0"/>
+                        <TextBlock x:Name="GameText" Foreground="#8A8A96" FontSize="11"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- The code Ctrl+V pastes, its place in the queue, and what comes after. -->
+                <StackPanel x:Name="CodePanel" Orientation="Horizontal" Margin="0,3,0,5">
+                    <TextBlock x:Name="CodeText" FontFamily="Cascadia Mono, Consolas" FontSize="24"
+                               FontWeight="Bold" Foreground="#E8E8EE" MinWidth="190"
+                               VerticalAlignment="Center"/>
+                    <TextBlock x:Name="CounterText" Foreground="#8A8A96" FontSize="12" MinWidth="64"
+                               VerticalAlignment="Center" Margin="10,2,0,0"/>
+                    <TextBlock x:Name="PreviewText" FontFamily="Cascadia Mono, Consolas" Foreground="#6E6E78"
+                               FontSize="12" MinWidth="230" VerticalAlignment="Center" Margin="4,2,0,0"/>
+                </StackPanel>
+
+                <StackPanel x:Name="MessagePanel" Visibility="Collapsed" Margin="0,3,0,5">
+                    <TextBlock x:Name="MessageTitle" Foreground="#E8E8EE" FontSize="18" FontWeight="SemiBold"/>
+                    <TextBlock x:Name="MessageDetail" Foreground="#8A8A96" FontSize="11" Margin="0,2,0,0"/>
+                </StackPanel>
+
+                <StackPanel x:Name="KeysPanel" Orientation="Horizontal"/>
+
+                <!-- Opened with the ... button or a right-click anywhere on the HUD. -->
+                <StackPanel x:Name="ActionsPanel" Orientation="Horizontal" Visibility="Collapsed" Margin="0,10,0,0">
+                    <Button x:Name="RefreshButton" Style="{StaticResource HudButton}" Margin="0,0,6,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Glyph}" Text="&#xE72C;"/>
+                            <TextBlock Text="Refresh codes"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="MarkAllButton" Style="{StaticResource HudButton}" Margin="0,0,6,0"
+                            ToolTip="Skip every code on the current list from now on">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Glyph}" Text="&#xE73E;"/>
+                            <TextBlock Text="Mark all as pasted"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="ForgetButton" Style="{StaticResource HudButton}" Margin="0,0,6,0"
+                            ToolTip="Start the whole list over, including codes you already pasted">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Glyph}" Text="&#xE7A7;"/>
+                            <TextBlock Text="Forget pasted codes"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="OpenFolderButton" Style="{StaticResource HudButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Glyph}" Text="&#xE838;"/>
+                            <TextBlock Text="Open folder"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Always-visible controls down the right edge. -->
+            <Border Grid.Column="2" BorderBrush="#34343C" BorderThickness="1,0,0,0" Margin="14,0,0,0" Padding="11,0,0,0">
+                <StackPanel VerticalAlignment="Top">
+                    <Button x:Name="ExitButton" Style="{StaticResource ExitButton}" Content="&#xE8BB;"
+                            ToolTip="Exit WWM Redeem" AutomationProperties.Name="Exit"/>
+                    <Button x:Name="SoundButton" Style="{StaticResource IconButton}" Margin="0,5,0,0"
+                            AutomationProperties.Name="Sound"/>
+                    <Button x:Name="MoreButton" Style="{StaticResource IconButton}" Margin="0,5,0,0" Content="&#xE712;"
+                            ToolTip="More options (or right-click the HUD)" AutomationProperties.Name="More"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

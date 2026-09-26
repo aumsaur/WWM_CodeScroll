@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>WWM-Redeem</AssemblyName>
+    <RootNamespace>WwmRedeem</RootNamespace>
+    <Version>1.0.0</Version>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <!-- The game runs elevated, and Windows hides an elevated window's key presses
+         from non-elevated hooks, so the exe asks for admin on launch. -->
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!-- Smoke tests build with -p:AsInvoker=true so they run without the UAC prompt. -->
+  <PropertyGroup Condition="'$(AsInvoker)' == 'true'">
+    <ApplicationManifest>app.asinvoker.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Same as Claudy: UseWPF + UseWindowsForms both add global usings that collide
+         (Application, Clipboard, ...). WinForms is only needed for the tray icon, so
+         it's referenced through an explicit `Forms.` alias instead. -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+  </ItemGroup>
+
+</Project>

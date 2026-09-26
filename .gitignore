@@ -1,0 +1,10 @@
+bin/
+obj/
+dist/
+dist-test/
+
+# Written next to the exe at runtime
+wwm-codes-cache.json
+wwm-used.txt
+wwm-redeem.log
+wwm-settings.json
