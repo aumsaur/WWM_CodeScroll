@@ -8,11 +8,13 @@ Codes are fetched fresh from [codes.yar.gg](https://codes.yar.gg/) (its `/api/co
 
 **[Download the latest release](https://github.com/aumsaur/wwm_code_scroll/releases/latest)**, unzip it anywhere, and double-click `WWM-Redeem.exe`.
 
-No install, and no .NET or other runtime needed: everything is packed inside the exe (about 72 MB), so you can copy it to any folder or PC running Windows 10/11 and run it from there.
+No install, and no .NET or other runtime needed: everything is packed inside the exe (about 72 MB), so you can copy it to any folder or PC running Windows 10 or 11 and run it from there. It is a **64-bit** build, which is part of what the size is for; on an ARM machine Windows runs it under emulation.
+
+The first launch is slower than every launch after it. A single-file build unpacks itself into a temp folder before it starts, and that happens once per version.
 
 Two prompts on the way in, both expected:
 
-- **"Windows protected your PC"** — the exe is not code-signed, and a certificate costs real money for a free tool. Click **More info**, then **Run anyway**.
+- **"Windows protected your PC"** — the exe is not code-signed, and a certificate costs real money for a free tool. Click **More info**, then **Run anyway**. The same two facts — unsigned, and a large file that unpacks itself — are why an antivirus scanner occasionally takes an interest.
 - **The administrator prompt** — this one is not optional, and there is a reason for it further down: the game runs elevated, and Windows hides an admin window's key presses from programs that are not.
 
 Codes come from [codes.yar.gg](https://codes.yar.gg/), which is somebody else's site. If it goes down or changes its feed, this stops finding new codes until it is updated.

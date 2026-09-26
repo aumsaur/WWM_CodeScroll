@@ -1,5 +1,30 @@
 title: WWM Code Scroll
 description: >-
-  Redeem Where Winds Meet codes without leaving the game. A HUD shows the code
-  Ctrl+V will paste; every paste loads the next one.
-theme: jekyll-theme-cayman
+  Redeem Where Winds Meet codes without leaving the game. A HUD holds the code
+  Ctrl+V will paste, and hands you the next one the moment you paste it.
+
+github_user: aumsaur
+github_repo: wwm_code_scroll
+
+# README.md is the page. GitHub Pages runs jekyll-readme-index (it becomes the
+# index because no index file sits beside it) and jekyll-optional-front-matter
+# (so a plain README is treated as a page at all), and this hands it the layout
+# it would otherwise have no way to ask for.
+#
+# No `theme:` on purpose. The theme chooser was the quick way to get something
+# readable up; _layouts/default.html replaced it so the page could open with
+# the HUD itself rather than with a heading describing one.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# the site is the manual, not the source
+exclude:
+  - build.ps1
+  - tools
+  - src
+  - script
+  - dist
+  - dist-test

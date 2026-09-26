@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description | strip_newlines }}" />
+    <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Spectral:ital,wght@0,400;0,600;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  </head>
+  <body>
+    <!-- The dark band is the game screen: it is where the HUD lives, and the
+         only place on this page that is not paper. -->
+    <header class="screen">
+      <div class="screen__inner">
+        <h1 class="title">{{ site.title }}</h1>
+        <p class="lede">
+          Redeem codes for <i>Where Winds Meet</i> without alt-tabbing. A strip
+          across the bottom of the screen holds the code Ctrl+V will paste, and
+          hands you the next one the moment you paste it.
+        </p>
+
+        <!-- A REPLICA, not a screenshot: the greys are the ones in
+             HudWindow.xaml and pressing Ctrl+V really does advance it. -->
+        <div class="demo">
+          <button
+            type="button"
+            class="hud"
+            id="hud"
+            aria-label="Demonstration of the heads-up display. Activate to load the next code."
+          >
+            <span class="hud__dot" aria-hidden="true"></span>
+            <span class="hud__code" id="hudCode">AXDJ86EMEC</span>
+            <span class="hud__keys" aria-hidden="true">
+              <kbd>Ctrl</kbd><kbd>V</kbd>
+            </span>
+            <span class="hud__count" id="hudCount">1 / 8</span>
+            <span class="hud__close" aria-hidden="true">&#10005;</span>
+          </button>
+          <p class="demo__hint" id="hudHint">
+            Press <kbd>Ctrl</kbd><kbd>V</kbd> here to see what the game sees.
+          </p>
+        </div>
+
+        <div class="get">
+          <a class="get__button" href="https://github.com/{{ site.github_user }}/{{ site.github_repo }}/releases/latest">
+            Download for Windows
+          </a>
+          <p class="get__meta">
+            66&nbsp;MB zip, version 1.0.0. Windows 10 or 11, 64-bit. No
+            installer, and no .NET to fetch first: the runtime is packed inside
+            the exe.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- and the manual is on paper -->
+    <main class="paper">
+      <article class="manual">{{ content }}</article>
+    </main>
+
+    <footer class="paper foot">
+      <p>
+        <a href="https://github.com/{{ site.github_user }}/{{ site.github_repo }}">Source on GitHub</a>
+      </p>
+      <p class="foot__note">
+        Not affiliated with the makers of <i>Where Winds Meet</i>. Codes are
+        fetched from <a href="https://codes.yar.gg/">codes.yar.gg</a>, which is
+        somebody else&rsquo;s site.
+      </p>
+    </footer>
+
+    <script>
+      // The demo is the product: one queue, one key, and the counter moves.
+      // Sample codes in the real ten-character shape, so the strip is the
+      // width it will actually be in game.
+      (function () {
+        var CODES = [
+          "AXDJ86EMEC", "NW64EPCMXC", "EHAYWMNM38", "PK67XXK7JQ",
+          "THHM6C38FP", "SQQM4AFNJT", "QMN4T8T7RQ", "WAF77PC6EQ"
+        ];
+        var hud = document.getElementById("hud");
+        var code = document.getElementById("hudCode");
+        var count = document.getElementById("hudCount");
+        var hint = document.getElementById("hudHint");
+        var i = 0;
+        var used = false;
+
+        function next() {
+          i = (i + 1) % CODES.length;
+          code.textContent = CODES[i];
+          count.textContent = i + 1 + " / " + CODES.length;
+          hud.classList.remove("is-tick");
+          void hud.offsetWidth; // restart the flash
+          hud.classList.add("is-tick");
+          if (!used) {
+            used = true;
+            hint.textContent =
+              i === 0
+                ? "Back to the first one. In game, pasted codes are remembered between runs."
+                : "That is the whole loop. Paste, redeem, paste, redeem.";
+          }
+        }
+
+        hud.addEventListener("click", next);
+        document.addEventListener("keydown", function (e) {
+          if ((e.ctrlKey || e.metaKey) && (e.key === "v" || e.key === "V")) {
+            e.preventDefault();
+            next();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

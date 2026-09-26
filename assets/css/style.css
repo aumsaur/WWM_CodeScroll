@@ -1,0 +1,361 @@
+/* WWM Code Scroll.
+ *
+ * Two grounds, and each one has a reason. The HUD is an overlay that lives on
+ * a game screen, so it gets a dark band. Everything else is the manual, and a
+ * manual belongs on paper. The greys inside the HUD replica are lifted
+ * straight out of HudWindow.xaml -- if the app is restyled, this is wrong,
+ * and it should be.
+ */
+
+:root {
+  --screen: #171b22;
+  --screen-deep: #10141a;
+  --paper: #e6e4dc;
+  --paper-sink: #dedbd0;
+  --ink: #22272d;
+  --ink-soft: #565e68;
+  --jade: #3d8f74;
+  --jade-lift: #57a98d;
+  --rule: #c9c4b6;
+
+  /* the app's own palette */
+  --hud-bg: #34343c;
+  --hud-edge: #4a4a54;
+  --hud-text: #e8e8ee;
+  --hud-dim: #8a8a96;
+  --hud-close: #c42b1c;
+
+  --measure: 68ch;
+  --serif: "Spectral", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+a {
+  color: #1f6f58;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+a:hover {
+  color: var(--jade);
+}
+
+:focus-visible {
+  outline: 2px solid var(--jade-lift);
+  outline-offset: 3px;
+}
+
+kbd {
+  font-family: var(--mono);
+  font-size: 0.78em;
+  font-weight: 600;
+  padding: 0.12em 0.42em;
+  border-radius: 4px;
+  background: #0000000f;
+  border: 1px solid #00000024;
+  border-bottom-width: 2px;
+}
+
+/* ---------- the screen ---------- */
+
+.screen {
+  background:
+    radial-gradient(120% 90% at 50% 0%, #1e242e 0%, var(--screen) 55%, var(--screen-deep) 100%);
+  color: #d7dbe2;
+  padding: clamp(3rem, 9vw, 6rem) 1.25rem clamp(2.5rem, 7vw, 4.5rem);
+  border-bottom: 1px solid #000;
+}
+
+.screen__inner {
+  max-width: 54rem;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 7vw, 4.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.6rem;
+  color: #f1f3f6;
+}
+
+.lede {
+  max-width: 46ch;
+  margin: 0;
+  font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+  line-height: 1.6;
+  color: #a8b0bb;
+}
+.lede i {
+  color: #cdd4dd;
+}
+
+/* ---------- the replica ---------- */
+
+.demo {
+  margin: clamp(2.25rem, 6vw, 3.5rem) 0 0;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 34rem;
+  padding: 0.7rem 0.85rem;
+  font-family: var(--mono);
+  text-align: left;
+  color: var(--hud-text);
+  background: var(--hud-bg);
+  border: 1px solid var(--hud-edge);
+  border-radius: 7px;
+  box-shadow: 0 10px 34px #0009;
+  cursor: pointer;
+}
+
+.hud__dot {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--jade);
+  box-shadow: 0 0 0 3px #3d8f7426;
+}
+
+.hud__code {
+  font-size: clamp(1rem, 3.4vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  flex: 1 1 auto;
+}
+
+.hud__keys {
+  flex: none;
+  display: flex;
+  gap: 0.2rem;
+}
+.hud__keys kbd {
+  background: #ffffff14;
+  border-color: #ffffff2e;
+  color: #c8c8d0;
+}
+
+.hud__count {
+  flex: none;
+  font-size: 0.8rem;
+  color: var(--hud-dim);
+}
+
+.hud__close {
+  flex: none;
+  font-size: 0.78rem;
+  color: var(--hud-close);
+  padding-left: 0.1rem;
+}
+
+.hud.is-tick .hud__code {
+  animation: tick 260ms ease-out;
+}
+
+@keyframes tick {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+.demo__hint {
+  margin: 0.9rem 0 0;
+  font-size: 0.95rem;
+  color: #8d96a2;
+}
+.demo__hint kbd {
+  background: #ffffff10;
+  border-color: #ffffff26;
+  color: #b6bdc7;
+}
+
+/* ---------- the download ---------- */
+
+.get {
+  margin-top: clamp(2.25rem, 6vw, 3.25rem);
+}
+
+.get__button {
+  display: inline-block;
+  padding: 0.85rem 1.7rem;
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #0d1a15;
+  background: var(--jade);
+  border-radius: 6px;
+  text-decoration: none;
+}
+.get__button:hover {
+  background: var(--jade-lift);
+  color: #0d1a15;
+}
+
+.get__meta {
+  max-width: 44ch;
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #8d96a2;
+}
+
+/* ---------- the manual ---------- */
+
+.paper {
+  padding: clamp(2.75rem, 7vw, 4.5rem) 1.25rem;
+}
+
+.manual {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+/* the hero already said the name; on github.com the h1 still earns its place */
+.manual > h1:first-child {
+  display: none;
+}
+
+.manual h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 2.75rem 0 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.manual h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 2rem 0 0.6rem;
+}
+
+.manual p,
+.manual li {
+  max-width: var(--measure);
+}
+
+.manual ul {
+  padding-left: 1.15rem;
+}
+
+.manual li {
+  margin: 0.35rem 0;
+}
+
+.manual li::marker {
+  color: var(--jade);
+}
+
+.manual strong {
+  font-weight: 600;
+}
+
+.manual code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  padding: 0.14em 0.4em;
+  border-radius: 4px;
+  background: var(--paper-sink);
+  border: 1px solid #0000000f;
+}
+
+.manual pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  color: #dfe3e8;
+  background: var(--screen);
+  border-radius: 7px;
+}
+.manual pre code {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font-size: 1em;
+}
+
+.manual table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.96rem;
+}
+
+.manual th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.5rem 0.7rem;
+  border-bottom: 2px solid var(--rule);
+}
+
+.manual td {
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid #0000001a;
+}
+
+/* the keys table reads as keys */
+.manual td:first-child {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  white-space: nowrap;
+  color: #1f6f58;
+}
+
+.manual img {
+  max-width: 100%;
+}
+
+/* ---------- foot ---------- */
+
+.foot {
+  padding-top: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0 auto;
+  max-width: calc(var(--measure) + 2.5rem);
+}
+.foot p {
+  max-width: var(--measure);
+  margin: 1.25rem auto 0;
+  font-size: 0.95rem;
+}
+.foot__note {
+  color: var(--ink-soft);
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud.is-tick .hud__code {
+    animation: none;
+  }
+  * {
+    transition: none !important;
+  }
+}

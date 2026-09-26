@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Jade ticket">
+  <!-- the app's tray icon is a jade ticket; this is the same idea at 32px -->
+  <rect width="32" height="32" rx="7" fill="#22272d"/>
+  <path d="M7 10.5a1.5 1.5 0 0 1 1.5-1.5h15A1.5 1.5 0 0 1 25 10.5v3a2.5 2.5 0 0 0 0 5v3a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 7 21.5v-3a2.5 2.5 0 0 0 0-5z" fill="#3d8f74"/>
+  <path d="M12.5 13.5h7M12.5 18.5h4" stroke="#0f2b22" stroke-width="1.8" stroke-linecap="round"/>
+</svg>
