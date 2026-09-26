@@ -1,4 +1,4 @@
-# WWM Redeem Code
+# WWM Redeem HUD
 
 Redeem **Where Winds Meet** codes without leaving the game. A small HUD sits at the bottom of the screen showing the code Ctrl+V will paste; every paste loads the next one, so it's just Ctrl+V → redeem → Ctrl+V → redeem.
 
