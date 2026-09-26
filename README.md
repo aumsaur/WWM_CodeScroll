@@ -1,4 +1,4 @@
-# WWM Redeem HUD
+# WWM Code Scroll
 
 Redeem **Where Winds Meet** codes without leaving the game. A small HUD sits at the bottom of the screen showing the code Ctrl+V will paste; every paste loads the next one, so it's just Ctrl+V → redeem → Ctrl+V → redeem.
 
@@ -6,7 +6,7 @@ Codes are fetched fresh from [codes.yar.gg](https://codes.yar.gg/) (its `/api/co
 
 ## Get it
 
-**[Download the latest release](https://github.com/aumsaur/wwm-redeem-hud/releases/latest)**, unzip it anywhere, and double-click `WWM-Redeem.exe`.
+**[Download the latest release](https://github.com/aumsaur/wwm_code_scroll/releases/latest)**, unzip it anywhere, and double-click `WWM-Redeem.exe`.
 
 No install, and no .NET or other runtime needed: everything is packed inside the exe (about 72 MB), so you can copy it to any folder or PC running Windows 10/11 and run it from there.
 
@@ -71,7 +71,7 @@ For a quick visual check, `WWM-Redeem.exe --snapshot hud.png` fetches the codes,
 ## Files
 
 ```
-wwm-redeem-hud/
+wwm_code_scroll/
 ├── build.ps1                 # Publishes the portable exe
 ├── dist/WWM-Redeem.exe       # Build output (not in git)
 ├── src/WwmRedeem/
