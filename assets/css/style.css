@@ -26,6 +26,11 @@
   --hud-close: #c42b1c;
 
   --measure: 68ch;
+  /* ONE LEFT EDGE down the whole page. The hero and the manual used to be
+   * two centred blocks of different widths, so the text stepped inward by
+   * 140px at the paper join. They share a frame now; the measure only limits
+   * the line length INSIDE it. */
+  --frame: 54rem;
   --serif: "Spectral", Georgia, serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
 }
@@ -83,7 +88,7 @@ kbd {
 }
 
 .screen__inner {
-  max-width: 54rem;
+  max-width: var(--frame);
   margin: 0 auto;
 }
 
@@ -97,7 +102,7 @@ kbd {
 }
 
 .lede {
-  max-width: 46ch;
+  max-width: 52ch;
   margin: 0;
   font-size: clamp(1.05rem, 2.2vw, 1.28rem);
   line-height: 1.6;
@@ -229,7 +234,7 @@ kbd {
 }
 
 .manual {
-  max-width: var(--measure);
+  max-width: var(--frame);
   margin: 0 auto;
 }
 
@@ -281,9 +286,13 @@ kbd {
   border-radius: 4px;
   background: var(--paper-sink);
   border: 1px solid #0000000f;
+  /* a span that wraps mid-name keeps its box on both lines */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .manual pre {
+  max-width: var(--measure);
   font-family: var(--mono);
   font-size: 0.85rem;
   line-height: 1.6;
@@ -303,6 +312,7 @@ kbd {
 
 .manual table {
   width: 100%;
+  max-width: var(--measure);
   border-collapse: collapse;
   margin: 1.25rem 0;
   font-size: 0.96rem;
@@ -338,11 +348,11 @@ kbd {
   padding-top: 0;
   border-top: 1px solid var(--rule);
   margin: 0 auto;
-  max-width: calc(var(--measure) + 2.5rem);
+  max-width: var(--frame);
 }
 .foot p {
   max-width: var(--measure);
-  margin: 1.25rem auto 0;
+  margin: 1.25rem 0 0;
   font-size: 0.95rem;
 }
 .foot__note {
