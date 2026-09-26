@@ -6,7 +6,7 @@ Codes are fetched fresh from [codes.yar.gg](https://codes.yar.gg/) (its `/api/co
 
 ## Get it
 
-**[Download the latest release](https://github.com/aumsaur/wwm_code_scroll/releases/latest)**, unzip it anywhere, and double-click `WWM-Redeem.exe`.
+**[Download the latest release](https://github.com/aumsaur/WWM_CodeScroll/releases/latest)**, unzip it anywhere, and double-click `WWM-Redeem.exe`.
 
 No install, and no .NET or other runtime needed: everything is packed inside the exe (about 72 MB), so you can copy it to any folder or PC running Windows 10 or 11 and run it from there. It is a **64-bit** build, which is part of what the size is for; on an ARM machine Windows runs it under emulation.
 
@@ -73,7 +73,7 @@ For a quick visual check, `WWM-Redeem.exe --snapshot hud.png` fetches the codes,
 ## Files
 
 ```
-wwm_code_scroll/
+WWM_CodeScroll/
 ├── build.ps1                 # Publishes the portable exe
 ├── dist/WWM-Redeem.exe       # Build output (not in git)
 ├── src/WwmRedeem/

@@ -4,7 +4,7 @@ description: >-
   Ctrl+V will paste, and hands you the next one the moment you paste it.
 
 github_user: aumsaur
-github_repo: wwm_code_scroll
+github_repo: WWM_CodeScroll
 
 # README.md is the page. GitHub Pages runs jekyll-readme-index (it becomes the
 # index because no index file sits beside it) and jekyll-optional-front-matter
