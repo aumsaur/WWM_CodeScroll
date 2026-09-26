@@ -238,6 +238,13 @@ kbd {
   margin: 0 auto;
 }
 
+/* Two things the readme needs and the page does not. On github.com this is
+ * the only signpost to the site; on the site it would be a link to itself,
+ * pointing at a download button already sitting above it. */
+.manual .repo-only {
+  display: none;
+}
+
 /* the hero already said the name; on github.com the h1 still earns its place */
 .manual > h1:first-child {
   display: none;

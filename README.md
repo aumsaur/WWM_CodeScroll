@@ -8,6 +8,12 @@ Codes are fetched fresh from [codes.yar.gg](https://codes.yar.gg/) (its `/api/co
 
 **[Download the latest release](https://github.com/aumsaur/WWM_CodeScroll/releases/latest)**, unzip it anywhere, and double-click `WWM-Redeem.exe`.
 
+<div class="repo-only" markdown="1">
+
+Or skip the readme: the same manual lives at **[aumsaur.github.io/WWM_CodeScroll](https://aumsaur.github.io/WWM_CodeScroll/)** with the download at the top and a HUD you can actually press Ctrl+V on.
+
+</div>
+
 No install, and no .NET or other runtime needed: everything is packed inside the exe (about 72 MB), so you can copy it to any folder or PC running Windows 10 or 11 and run it from there. It is a **64-bit** build, which is part of what the size is for; on an ARM machine Windows runs it under emulation.
 
 The first launch is slower than every launch after it. A single-file build unpacks itself into a temp folder before it starts, and that happens once per version.
